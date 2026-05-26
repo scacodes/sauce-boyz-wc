@@ -105,7 +105,19 @@ function setupEventListeners() {
   if (adminToggle) {
     adminToggle.checked = state.isAdminMode;
     adminToggle.addEventListener('change', (e) => {
-      state.isAdminMode = e.target.checked;
+      if (e.target.checked) {
+        const password = prompt('🔑 Ingresa la contraseña de administrador para activar el panel de control:');
+        if (password === '23#') {
+          state.isAdminMode = true;
+          alert('👑 ¡Acceso concedido! Modo Administrador activado.');
+        } else {
+          alert('❌ Contraseña incorrecta. Acceso denegado.');
+          e.target.checked = false;
+          state.isAdminMode = false;
+        }
+      } else {
+        state.isAdminMode = false;
+      }
       saveState();
       updateUserInterface();
     });
@@ -124,6 +136,35 @@ function setupEventListeners() {
           knockoutWinners: {}
         });
         state.activeParticipantIndex = state.participants.length - 1;
+        saveState();
+        updateUserInterface();
+      }
+    });
+  }
+
+  // Eliminar participante activo
+  const btnDeleteUser = document.getElementById('btnDeleteUser');
+  if (btnDeleteUser) {
+    btnDeleteUser.addEventListener('click', () => {
+      const currentUser = state.participants[state.activeParticipantIndex];
+      if (!currentUser) return;
+
+      const confirmDelete = confirm(`¿Estás seguro de que deseas eliminar a "${currentUser.name}"? Se perderán todas sus apuestas.`);
+      if (confirmDelete) {
+        state.participants.splice(state.activeParticipantIndex, 1);
+        
+        // Si no quedan participantes, crear uno por defecto para evitar interfaz vacía
+        if (state.participants.length === 0) {
+          state.participants.push({
+            name: 'Jugador 1 ⚽',
+            paid: false,
+            predictions: {},
+            knockoutWinners: {}
+          });
+        }
+        
+        // Ajustar el índice activo
+        state.activeParticipantIndex = Math.max(0, state.activeParticipantIndex - 1);
         saveState();
         updateUserInterface();
       }
