@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sauce Boyz-World Cup: La mejor plataforma web para hacer la polla mundialista de FIFA 2026 con tus amigos. Apuestas, grupos en tiempo real y leaderboard.">
+  <meta name="author" content="Samuel Caviedes Azuero">
+  
+  <title>Sauce Boyz - World Cup 2026 🏆</title>
+  
+  <!-- Estilos y Tipografías -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Icono favicon de cortesía -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- 1. Encabezado Premium -->
+    <header class="header" id="appHeader">
+      <div class="header-title-container">
+        <span class="header-logo" role="img" aria-label="Copa del Mundo">🏆</span>
+        <h1 id="mainTitle">Sauce Boyz-World Cup</h1>
+      </div>
+      <p id="subTitle">Polla Mundialista FIFA 2026</p>
+    </header>
+
+    <!-- 2. Menú de Navegación Horizontal -->
+    <nav class="navbar" id="appNavbar" aria-label="Menú principal de navegación">
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <button class="nav-link active" data-tab="inicio" id="tabBtnInicio" aria-controls="inicio" aria-selected="true">
+            🏠 Inicio
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" data-tab="mis-apuestas" id="tabBtnApuestas" aria-controls="mis-apuestas" aria-selected="false">
+            ✏️ Mis Apuestas
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" data-tab="tabla-puntajes" id="tabBtnPuntajes" aria-controls="tabla-puntajes" aria-selected="false">
+            📈 Tabla
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" data-tab="pago" id="tabBtnPago" aria-controls="pago" aria-selected="false">
+            💳 Pago
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- 3. Barra Superior de Control del Participante Activo -->
+    <section class="user-bar" id="userControlBar" aria-label="Control de participante activo">
+      <div class="user-selector-container">
+        <label for="userSelect" class="user-selector-label">👤 Jugador:</label>
+        <select id="userSelect" class="user-select" aria-label="Seleccionar participante activo">
+          <!-- Cargado dinámicamente desde app.js -->
+        </select>
+        <button id="btnCreateUser" class="btn-secondary" aria-label="Crear un nuevo perfil de amigo">
+          ➕ Agregar Amigo
+        </button>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+        <!-- Indicador de Pago del Jugador Seleccionado -->
+        <div id="userStatusBadge" class="status-badge status-pending" role="status">
+          Cargando...
+        </div>
+
+        <!-- Interruptor para Modo Administrador -->
+        <div class="admin-switch-container">
+          <span class="admin-switch-label">⚙️ Admin Mode</span>
+          <label class="switch" for="adminToggle">
+            <input type="checkbox" id="adminToggle" aria-label="Activar panel de administrador">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Contenedor de Inyección del Panel del Administrador -->
+    <section id="adminPanelContainer" aria-label="Panel administrativo de control">
+      <!-- Inyectado por app.js cuando adminToggle está marcado -->
+    </section>
+
+    <!-- 5. Contenedores de Pestañas (Páginas de la Aplicación SPA) -->
+    <main id="appMainContent">
+      
+      <!-- Pestaña: INICIO -->
+      <article class="tab-content active" id="inicio" role="tabpanel" aria-labelledby="tabBtnInicio">
+        <!-- Cargado dinámicamente por app.js -->
+      </article>
+
+      <!-- Pestaña: MIS APUESTAS -->
+      <article class="tab-content" id="mis-apuestas" role="tabpanel" aria-labelledby="tabBtnApuestas">
+        <!-- Cargado dinámicamente por app.js -->
+      </article>
+
+      <!-- Pestaña: TABLA DE PUNTAJES -->
+      <article class="tab-content" id="tabla-puntajes" role="tabpanel" aria-labelledby="tabBtnPuntajes">
+        <!-- Cargado dinámicamente por app.js -->
+      </article>
+
+      <!-- Pestaña: PAGO -->
+      <article class="tab-content" id="pago" role="tabpanel" aria-labelledby="tabBtnPago">
+        <!-- Cargado dinámicamente por app.js -->
+      </article>
+
+    </main>
+
+    <!-- 6. Pie de Página Elegante -->
+    <footer class="footer" id="appFooter">
+      <p class="footer-credits">Sauce Boyz-World Cup © 2026</p>
+      <p style="margin-top: 4px;">Diseñado con pasión mundialista para compartir entre amigos de verdad.</p>
+    </footer>
+
+  </div>
+
+  <!-- Scripts de Ejecución (Orden de dependencias estricto) -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
